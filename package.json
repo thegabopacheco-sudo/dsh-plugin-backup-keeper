@@ -1,0 +1,56 @@
+{
+  "name": "dsh-plugin-backup-keeper",
+  "version": "0.1.0",
+  "description": "Copias de seguridad versionadas para DeepSeek Harness: snapshots de carpetas con manifiesto SHA-256, verificacion, restore seguro y retencion, sin borrar originales.",
+  "type": "module",
+  "license": "MIT",
+  "author": "thegabopacheco-sudo",
+  "homepage": "https://github.com/thegabopacheco-sudo/dsh-plugin-backup-keeper#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thegabopacheco-sudo/dsh-plugin-backup-keeper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thegabopacheco-sudo/dsh-plugin-backup-keeper/issues"
+  },
+  "keywords": [
+    "deepseek",
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "mcp",
+    "backup-keeper"
+  ],
+  "main": "./dist/server.mjs",
+  "files": [
+    "dist/",
+    "docs/",
+    "cordis.patch.yml",
+    "scripts/postinstall.mjs",
+    "README.md",
+    "README.en.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build:bundle": "esbuild server.mjs --bundle --platform=node --format=esm --target=node20 --outfile=dist/server.mjs",
+    "prepack": "npm run build:bundle",
+    "postinstall": "node scripts/postinstall.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/server": "2.2.0",
+    "esbuild": "0.28.2",
+    "zod": "4.4.3"
+  }
+}
